@@ -1,0 +1,9 @@
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+/bbox-bluemix-bridge/.idea/workspace.xml
+/bbox-bluemix-bridge/.idea/libraries
+.DS_Store
+/build
+/bbox-bluemix-bridge/build

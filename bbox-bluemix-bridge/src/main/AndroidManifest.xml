@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="fr.bouyguestelecom.tv.bridge.bluemix">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name="fr.bouyguestelecom.tv.bridge.bluemix.IoTStarterApplication"
+        android:allowBackup="true">
+
+        <service
+            android:name=".BluemixBridgeService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="@string/app_name">
+
+            <intent-filter>
+                <action android:name="fr.bouyguestelecom.tv.bridge.IBboxBridge" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </service>
+
+        <!-- Mqtt Service -->
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
+
+    </application>
+
+</manifest>
