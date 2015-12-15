@@ -5,6 +5,19 @@
 
 Android Service running a MQTT notification client between BboxApi and Bluemix platform
 
+![architecture](img/architecture.png)
+
+Following BboxApi notifications are published through MQTT client directly to Bluemix IoT platform : 
+
+
+| notification types | MQTT Topic |
+|--------------------|-------------------|
+| APPLICATION         |  "Application" |
+| MEDIA     |     "Media"       |
+| MESSAGE |     Message         |
+| USER_INPUT   |   "UserInterface/RemoteController"      |
+| IOT        |    "Iot"    |
+
 ## Download
 
 ```
