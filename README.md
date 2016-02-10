@@ -18,33 +18,15 @@ Following BboxApi notifications are published through MQTT client directly to Bl
 | USER_INPUT   |   "UserInterface/RemoteController"      |
 | IOT        |    "Iot"    |
 
-## Download
+## Download source
 
 ```
 git clone bboxapi-bluemix-starterkit
 ```
 
-In your `./bbox-bluemix-bridge/build.gradle` you have a few variables to set :
+## Setup Bluemix
 
-| environnement variable | description |
-|--------------------|-------------------|
-| BBOXAPI_APP_ID         | application ID relative to your Miami Box  |
-| BBOXAPI_APP_SECRET     | application Secret relative to your Miami Box             |
-| BLUEMIX_IOT_AUTH_TOKEN | Bluemix Internet of Things auth token (see last step in Setup)              |
-| BLUEMIX_IOT_DEVICEID   | Bluemix Internet of Things deviceId you have set              |
-| BLUEMIX_IOT_ORG        | Bluemix Internet of Things organization id (at the top in dashboard page)        |
-
-You can either set these variable as environnement variable or you can replace them with their values directly
-
-* `BBOXAPI_APP_ID` and `BBOXAPI_APP_SECRET` are given by Bouygues Télécom
-
-In order to get `BLUEMIX_IOT_AUTH_TOKEN`,`BLUEMIX_IOT_DEVICEID` and `BLUEMIX_IOT_ORG`, you have to setup a working IoT Bluemix project as described below.
-
-This process will setup an MQTT server running on Node JS with Node Red interface
-
-## Setup
-
-The following will describe how to create a working IoT Bluemix project step by step :
+The following will describe how to create a working IoT Bluemix project step by step from https://console.eu-gb.bluemix.net :
 
 <hr/>
 
@@ -118,7 +100,32 @@ The following will describe how to create a working IoT Bluemix project step by 
 ![end_add_device](img/end_add_device.png)
 <hr/>
 
+## Configure authentication variables
+
+In your `./bbox-bluemix-bridge/build.gradle` you have a few variables to set :
+
+| environnement variable | description |
+|--------------------|-------------------|
+| BBOXAPI_APP_ID         | application ID relative to your Miami Box  |
+| BBOXAPI_APP_SECRET     | application Secret relative to your Miami Box             |
+| BLUEMIX_IOT_AUTH_TOKEN | Bluemix Internet of Things auth token (see last step in Setup)              |
+| BLUEMIX_IOT_DEVICEID   | Bluemix Internet of Things deviceId you have set              |
+| BLUEMIX_IOT_ORG        | Bluemix Internet of Things organization id (at the top in dashboard page)        |
+
+You can either set these variable as environnement variable or you can replace them with their values directly
+
+* `BBOXAPI_APP_ID` and `BBOXAPI_APP_SECRET` are given by Bouygues Télécom. If you dont have these, here is following contact https://dev.bouyguestelecom.fr/dev/?page_id=51
+
+![end_add_device](img/gradle_info.png)
+
+## Build Android app
+
+Build project with Android Studio or your favorite IDE
+
 ## Install Service
+
+Note down your Bbox Miami <IP> address.
+Connect via adb and install apk :  
 
 ```
 adb connect <IP>
@@ -128,21 +135,29 @@ adb install -r ./bbox-bluemix-bridge/build/outputs/apk/bbox-bluemix-bridge-debug
 ## Launch Service
 
 ```
-adb connect <IP>
 adb shell am startservice  "fr.bouyguestelecom.tv.bridge.bluemix/.BluemixBridgeService" --user 0
 ```
 
-## Output
+## Output screenshot
 
 * Client output, publishing message with BBoxApi Notification topic to Bluemix platform
 
 ![client_publish_notif](img/client_publish_notif.png)
 <hr/>
 
-* Bluemix Dashboard receiving notifications
+* Bluemix Node Red Dashboard receiving notifications
 
 ![dashboard_log](img/dashboard_log.png)
+
+<i>You can access Node Red dashboard from your <service_url>/red. For instance : http://yourservice.mybluemix.net/red/</i>
+
 <hr/>
+
+## Modify source code dispatching notification
+
+Android application is a service defined in `fr.bouyguestelecom.tv.bridge.bluemix.BluemixBridgeService.java` :
+
+![dashboard_log](img/dispatch_notification.png)
 
 ## External Libraries
 
