@@ -14,27 +14,28 @@ android {
 
     buildTypes {
         debug {
+            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"$System.env.BLUEMIX_IOT_ORG\""
+            buildConfigField "String", "BLUEMIX_API_KEY", "\"$System.env.BLUEMIX_API_KEY\""
+            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"$System.env.BLUEMIX_API_TOKEN\""
             buildConfigField "String", "BBOXAPI_APP_ID", "\"$System.env.BBOXAPI_APP_ID\""
             buildConfigField "String", "BBOXAPI_APP_SECRET", "\"$System.env.BBOXAPI_APP_SECRET\""
             buildConfigField "String", "BLUEMIX_IOT_DEVICEID", "\"$System.env.BLUEMIX_IOT_DEVICEID\""
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"$System.env.BLUEMIX_IOT_ORG\""
-            buildConfigField "String", "BLUEMIX_IOT_AUTH_TOKEN", "\"$System.env.BLUEMIX_IOT_AUTH_TOKEN\""
+            buildConfigField "String", "BLUEMIX_IOT_DEVICE_TYPE", "\"$System.env.BLUEMIX_IOT_DEVICE_TYPE\""
         }
         release {
+            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"$System.env.BLUEMIX_IOT_ORG\""
+            buildConfigField "String", "BLUEMIX_API_KEY", "\"$System.env.BLUEMIX_API_KEY\""
+            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"$System.env.BLUEMIX_API_TOKEN\""
             buildConfigField "String", "BBOXAPI_APP_ID", "\"$System.env.BBOXAPI_APP_ID\""
             buildConfigField "String", "BBOXAPI_APP_SECRET", "\"$System.env.BBOXAPI_APP_SECRET\""
             buildConfigField "String", "BLUEMIX_IOT_DEVICEID", "\"$System.env.BLUEMIX_IOT_DEVICEID\""
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"$System.env.BLUEMIX_IOT_ORG\""
-            buildConfigField "String", "BLUEMIX_IOT_AUTH_TOKEN", "\"$System.env.BLUEMIX_IOT_AUTH_TOKEN\""
+            buildConfigField "String", "BLUEMIX_IOT_DEVICE_TYPE", "\"$System.env.BLUEMIX_IOT_DEVICE_TYPE\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    android {
-        lintOptions {
-            abortOnError false
-        }
+    lintOptions {
+        abortOnError false
     }
 
 }
@@ -54,4 +55,5 @@ dependencies {
     compile 'org.java-websocket:Java-WebSocket:1.3.0'
     compile 'com.github.rickyclarkson:jmdns:3.4.2-r353-1'
     compile 'com.squareup.retrofit:retrofit:1.8.0'
+    compile 'akinaru:iotf-android:0.2'
 }

@@ -26,15 +26,19 @@ package fr.bouyguestelecom.tv.bridge.bluemix;
 import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONObject;
 
+import fr.bmartel.android.iotf.handler.AppHandler;
+import fr.bmartel.android.iotf.listener.IMessageCallback;
 import fr.bouyguestelecom.tv.bridge.IBboxBridge;
-import fr.bouyguestelecom.tv.bridge.bluemix.utils.Constants;
-import fr.bouyguestelecom.tv.bridge.bluemix.utils.MqttHandler;
-import fr.bouyguestelecom.tv.bridge.bluemix.utils.TopicFactory;
 import fr.bouyguestelecom.tv.openapi.secondscreen.application.ApplicationsManager;
 import fr.bouyguestelecom.tv.openapi.secondscreen.authenticate.IAuthCallback;
 import fr.bouyguestelecom.tv.openapi.secondscreen.bbox.Bbox;
@@ -51,12 +55,18 @@ public class BluemixBridgeService extends IntentService {
 
     private final static String SERVICE_THREAD_NAME = "BluemixBridgeService";
 
-    protected IoTStarterApplication app;
-
     public IAuthCallback authenticationCallback;
+
+    private AppHandler mHandler;
+
+    private IMessageCallback mIotCallback;
+
+    private boolean exit = false;
 
     private IBboxBridge.Stub bboxIotService = new IBboxBridge.Stub() {
     };
+
+    private RandomString randomId = new RandomString(30);
 
     public BluemixBridgeService() {
         super(SERVICE_THREAD_NAME);
@@ -67,21 +77,67 @@ public class BluemixBridgeService extends IntentService {
     public void onCreate() {
         super.onCreate();
 
-        app = (IoTStarterApplication) getApplicationContext();
+        mHandler = new AppHandler(this, BuildConfig.BLUEMIX_IOT_ORG, getPackageName(), BuildConfig.BLUEMIX_API_KEY, BuildConfig.BLUEMIX_API_TOKEN);
 
         Log.i(TAG, "BluemixBridgeService started");
 
-        MqttHandler mqttHandle = MqttHandler.getInstance(this);
+        mIotCallback = new IMessageCallback() {
+            @Override
+            public void connectionLost(Throwable cause) {
+                Log.i(TAG, "connection lost");
+                if (cause != null) {
+                    Log.e(TAG, "connection lost : " + cause.getMessage());
+                }
+                if (!exit) {
+                    Log.i(TAG, "trying to reconnect");
+                    mHandler.connect();
+                } else {
+                    Log.i(TAG, "not trying to reconnect");
+                }
+            }
 
-        app.setDeviceId(BuildConfig.BLUEMIX_IOT_DEVICEID);
-        app.setOrganization(BuildConfig.BLUEMIX_IOT_ORG);
-        app.setAuthToken(BuildConfig.BLUEMIX_IOT_AUTH_TOKEN);
+            @Override
+            public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
+                Log.i(TAG, "messageArrived : " + topic + " : " + new String(mqttMessage.getPayload()));
+            }
 
-        if (checkCanConnect()) {
-            mqttHandle.connect();
-        } else {
-            Log.i(TAG, "cant connect to MQTT");
-        }
+            @Override
+            public void deliveryComplete(IMqttDeliveryToken messageToken) {
+                try {
+                    Log.i(TAG, "deliveryComplete : " + new String(messageToken.getMessage().getPayload()));
+                } catch (MqttException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onConnectionSuccess() {
+                Log.i(TAG, "subscribe to device events ...");
+                mHandler.subscribeDeviceEvents("+", "+", "+");
+            }
+
+            @Override
+            public void onConnectionFailure() {
+                // connection failure
+            }
+
+            @Override
+            public void onDisconnectionSuccess() {
+                // disconnection successfull
+                if (exit) {
+                    mHandler.removeCallback(mIotCallback);
+                }
+            }
+
+            @Override
+            public void onDisconnectionFailure() {
+                // disconnection has failed
+            }
+        };
+
+        mHandler.addIotCallback(mIotCallback);
+
+        mHandler.setSSL(true);
 
         authenticationCallback = new IAuthCallback() {
             @Override
@@ -132,8 +188,7 @@ public class BluemixBridgeService extends IntentService {
                                                             public void onNotification(JSONObject event) {
 
                                                                 Log.d(TAG, "publish APPLICATION event : " + event);
-                                                                MqttHandler mqttHandler = MqttHandler.getInstance(BluemixBridgeService.this);
-                                                                mqttHandler.publish(TopicFactory.getEventTopic(NotificationType.APPLICATION.toString()), event.toString(), false, 0);
+                                                                mHandler.publishDeviceEvents(BuildConfig.BLUEMIX_IOT_DEVICE_TYPE, BuildConfig.BLUEMIX_IOT_DEVICEID, randomId.nextString(), event.toString());
 
                                                             }
                                                         });
@@ -143,8 +198,7 @@ public class BluemixBridgeService extends IntentService {
                                                             public void onNotification(JSONObject event) {
 
                                                                 Log.d(TAG, "publish MEDIA event : " + event);
-                                                                MqttHandler mqttHandler = MqttHandler.getInstance(BluemixBridgeService.this);
-                                                                mqttHandler.publish(TopicFactory.getEventTopic(NotificationType.MEDIA.toString()), event.toString(), false, 0);
+                                                                mHandler.publishDeviceEvents(BuildConfig.BLUEMIX_IOT_DEVICE_TYPE, BuildConfig.BLUEMIX_IOT_DEVICEID, randomId.nextString(), event.toString());
 
                                                             }
                                                         });
@@ -154,8 +208,7 @@ public class BluemixBridgeService extends IntentService {
                                                             public void onNotification(JSONObject event) {
 
                                                                 Log.d(TAG, "publish MESSAGE event : " + event);
-                                                                MqttHandler mqttHandler = MqttHandler.getInstance(BluemixBridgeService.this);
-                                                                mqttHandler.publish(TopicFactory.getEventTopic(NotificationType.MESSAGE.toString()), event.toString(), false, 0);
+                                                                mHandler.publishDeviceEvents(BuildConfig.BLUEMIX_IOT_DEVICE_TYPE, BuildConfig.BLUEMIX_IOT_DEVICEID, randomId.nextString(), event.toString());
 
                                                             }
                                                         });
@@ -165,8 +218,7 @@ public class BluemixBridgeService extends IntentService {
                                                             public void onNotification(JSONObject event) {
 
                                                                 Log.d(TAG, "publish USER_INPUT event : " + event);
-                                                                MqttHandler mqttHandler = MqttHandler.getInstance(BluemixBridgeService.this);
-                                                                mqttHandler.publish(TopicFactory.getEventTopic(NotificationType.USER_INPUT.toString()), event.toString(), false, 0);
+                                                                mHandler.publishDeviceEvents(BuildConfig.BLUEMIX_IOT_DEVICE_TYPE, BuildConfig.BLUEMIX_IOT_DEVICEID, randomId.nextString(), event.toString());
 
                                                             }
                                                         });
@@ -176,8 +228,7 @@ public class BluemixBridgeService extends IntentService {
                                                             public void onNotification(JSONObject event) {
 
                                                                 Log.d(TAG, "publish IOT event : " + event);
-                                                                MqttHandler mqttHandler = MqttHandler.getInstance(BluemixBridgeService.this);
-                                                                mqttHandler.publish(TopicFactory.getEventTopic(NotificationType.IOT.toString()), event.toString(), false, 0);
+                                                                mHandler.publishDeviceEvents(BuildConfig.BLUEMIX_IOT_DEVICE_TYPE, BuildConfig.BLUEMIX_IOT_DEVICEID, randomId.nextString(), event.toString());
 
                                                             }
                                                         });
@@ -202,38 +253,16 @@ public class BluemixBridgeService extends IntentService {
 
         BboxHolder.getInstance().bboxSearch(BluemixBridgeService.this, authenticationCallback);
 
-    }
-
-    /**
-     * Check whether the required properties are set for the app to connect to IoT.
-     *
-     * @return True if properties are set, false otherwise.
-     */
-
-    private boolean checkCanConnect() {
-        if (app.getOrganization().equals(Constants.QUICKSTART)) {
-            app.setConnectionType(Constants.ConnectionType.QUICKSTART);
-            if (app.getDeviceId() == null || app.getDeviceId().equals("")) {
-                return false;
-            }
-        } else if (app.getOrganization().equals(Constants.M2M)) {
-            app.setConnectionType(Constants.ConnectionType.M2M);
-            if (app.getDeviceId() == null || app.getDeviceId().equals("")) {
-                return false;
-            }
-        } else {
-            app.setConnectionType(Constants.ConnectionType.IOTF);
-            if (app.getOrganization() == null || app.getOrganization().equals("") ||
-                    app.getDeviceId() == null || app.getDeviceId().equals("") ||
-                    app.getAuthToken() == null || app.getAuthToken().equals("")) {
-                return false;
-            }
-        }
-        return true;
+        Log.d(TAG, "connecting");
+        mHandler.connect();
     }
 
     @Override
     public void onDestroy() {
+        exit = true;
+        Log.d(TAG, "disconnecting");
+        mHandler.disconnect();
+
         super.onDestroy();
         Log.i(TAG, "service BluemixBridgeService destroyed");
     }
