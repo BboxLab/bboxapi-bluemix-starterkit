@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/bbox-bluemix-bridge/bbox-bluemix-bridge.iml" filepath="$PROJECT_DIR$/bbox-bluemix-bridge/bbox-bluemix-bridge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bbox-bluemix-mobile/bbox-bluemix-mobile.iml" filepath="$PROJECT_DIR$/bbox-bluemix-mobile/bbox-bluemix-mobile.iml" />
       <module fileurl="file://$PROJECT_DIR$/bboxapi-bluemix-starterkit.iml" filepath="$PROJECT_DIR$/bboxapi-bluemix-starterkit.iml" />
     </modules>
   </component>
