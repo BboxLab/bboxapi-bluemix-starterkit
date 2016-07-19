@@ -25,6 +25,7 @@ package fr.bouyguestelecom.tv.bridge.bluemix;
 
 import android.annotation.SuppressLint;
 import android.app.IntentService;
+import android.app.Service;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.IBinder;
@@ -49,7 +50,7 @@ import fr.bouyguestelecom.tv.openapi.secondscreen.notification.WebSocket;
 /**
  * @author Bertrand Martel
  */
-public class BluemixBridgeService extends IntentService {
+public class BluemixBridgeService extends Service {
 
     private static final String TAG = BluemixBridgeService.class.getSimpleName();
 
@@ -67,10 +68,6 @@ public class BluemixBridgeService extends IntentService {
     };
 
     private RandomString randomId = new RandomString(30);
-
-    public BluemixBridgeService() {
-        super(SERVICE_THREAD_NAME);
-    }
 
     @SuppressLint("NewApi")
     @Override
@@ -90,6 +87,8 @@ public class BluemixBridgeService extends IntentService {
                 }
                 if (!exit) {
                     Log.i(TAG, "trying to reconnect");
+                    if (authenticationCallback!=null)
+                        BboxHolder.getInstance().bboxSearch(BluemixBridgeService.this, authenticationCallback);
                     mHandler.connect();
                 } else {
                     Log.i(TAG, "not trying to reconnect");
@@ -272,10 +271,6 @@ public class BluemixBridgeService extends IntentService {
         return bboxIotService;
     }
 
-    @Override
-    protected void onHandleIntent(Intent intent) {
-
-    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {

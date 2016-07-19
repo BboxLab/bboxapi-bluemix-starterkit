@@ -30,22 +30,22 @@ The following will describe how to create a working IoT Bluemix project step by 
 
 <hr/>
 
-<b>1) Go to "catalog" and choose "Internet of Things Foundation Starter" :</b>
+<b>1) Create a Bluemix account</b>
 
-![boilerplate](img/boilerplate.png)
 <hr/>
 
-<b>2) Name your "Internet of Things Foundation Starter" application and "create" :</b>
+<b>2) Deploy this Git project in your Bluemix</b>
 
-![create_iot_starter_kit](img/create_iot_starter_kit.png)
+![![Déployer dans Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=<https://github.com/edevregille/node-red-bluemix-starter> # [required])
+
 <hr/>
 
-<b>3) Return to the "catalog" and choose "Internet of Things Foundation" : </b>
+<b>3) Go to the Bluemix "catalog" and choose "Internet of Things Platform" : </b>
 
 ![iot_foundation](img/iot_foundation.png)
 <hr/>
 
-<b>4) Name your "Internet of Things Foundation" service : </b>
+<b>4) Name your "Internet of Things Platform" service and link it with your Node Red starter : </b>
 
 ![create_iot_foundation](img/create_iot_foundation.png)
 <hr/>
@@ -60,7 +60,7 @@ The following will describe how to create a working IoT Bluemix project step by 
 ![overview](img/overview.png)
 <hr/>
 
-<b>7) Click on your "Internet of Things Foundation" service :</b>
+<b>7) Click on your "Internet of Things Platform" service :</b>
 
 ![click_iot_foundation](img/click_iot_foundation.png)
 <hr/>
@@ -70,7 +70,7 @@ The following will describe how to create a working IoT Bluemix project step by 
 ![iot_dashboard](img/iot_dashboard.png)
 <hr/>
 
-<b>9) On your "Internet of Things Foundation" dashboard, click on "add a device" : </b>
+<b>9) On your "Internet of Things Platform" dashboard, click on "add a device" : </b>
 
 ![add_a_terminal](img/add_a_terminal.png)
 <hr/>
@@ -108,9 +108,11 @@ In your `./bbox-bluemix-bridge/build.gradle` you have a few variables to set :
 |--------------------|-------------------|
 | BBOXAPI_APP_ID         | application ID relative to your Miami Box  |
 | BBOXAPI_APP_SECRET     | application Secret relative to your Miami Box             |
-| BLUEMIX_IOT_AUTH_TOKEN | Bluemix Internet of Things auth token (see last step in Setup)              |
+| BLUEMIX_IOT_DEVICETYPE | Bluemix Internet of Things auth token (see last step in Setup)              |
 | BLUEMIX_IOT_DEVICEID   | Bluemix Internet of Things deviceId you have set              |
 | BLUEMIX_IOT_ORG        | Bluemix Internet of Things organization id (at the top in dashboard page)        |
+| BBOXAPI_API_KEY        | In dashboard -> global variables  |
+| BBOXAPI_API_TOKEN      | In dashboard -> global variables             |
 
 You can either set these variable as environnement variable or you can replace them with their values directly
 
@@ -168,3 +170,4 @@ Android application is a service defined in `fr.bouyguestelecom.tv.bridge.bluemi
 ## License
 
 The MIT License (MIT) Copyright (c) 2015 InnovationLab BboxLab
+
