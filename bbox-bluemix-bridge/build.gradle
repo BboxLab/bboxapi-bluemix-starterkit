@@ -13,72 +13,20 @@ android {
         versionName "1.0"
     }
 
-    /*
     buildTypes {
         debug {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"njihb0\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-njihb0-wt9cycxv5u\""
-            //buildConfigField "String", "BLUEMIX_API_TOKEN", "\"IauIPABiK&5uM-moL*\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"GtRBGyOqnWp7XfomQ?\""
-            buildConfigField "String", "BBOXAPI_APP_ID", "\"122-101\""
-            buildConfigField "String", "BBOXAPI_APP_SECRET", "\"7EFC9FA674F0450C8A929C243F49FDDE\""
-            buildConfigField "String", "BLUEMIX_IOT_DEVICEID", "\"bbox1234\""
-            buildConfigField "String", "BLUEMIX_IOT_DEVICE_TYPE", "\"Android\""
-        }
-        release {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"njihb0\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-njihb0-wt9cycxv5u\""
-            //buildConfigField "String", "BLUEMIX_API_TOKEN", "\"IauIPABiK&5uM-moL*\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"GtRBGyOqnWp7XfomQ?\""
-            buildConfigField "String", "BBOXAPI_APP_ID", "\"122-101\""
-            buildConfigField "String", "BBOXAPI_APP_SECRET", "\"7EFC9FA674F0450C8A929C243F49FDDE\""
-            buildConfigField "String", "BLUEMIX_IOT_DEVICEID", "\"bbox1234\""
-            buildConfigField "String", "BLUEMIX_IOT_DEVICE_TYPE", "\"Android\""
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    */
-
-    /*
-    buildTypes {
-        debug {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"4ujptp\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-4ujptp-zslsofd7yp\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"g-9pg2DCX-(BSqtU)d\""
+            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"8nq4io\""
+            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-8nq4io-6ia4koebdg\""
+            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"W)CFr*8@?PK9jqPt-m\""
             buildConfigField "String", "BBOXAPI_APP_ID", "\"122-101\""
             buildConfigField "String", "BBOXAPI_APP_SECRET", "\"7EFC9FA674F0450C8A929C243F49FDDE\""
             buildConfigField "String", "BLUEMIX_IOT_DEVICEID", "\"bboxmiami\""
             buildConfigField "String", "BLUEMIX_IOT_DEVICE_TYPE", "\"Android\""
         }
         release {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"4ujptp\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-4ujptp-zslsofd7yp\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"g-9pg2DCX-(BSqtU)d\""
-            buildConfigField "String", "BBOXAPI_APP_ID", "\"122-101\""
-            buildConfigField "String", "BBOXAPI_APP_SECRET", "\"7EFC9FA674F0450C8A929C243F49FDDE\""
-            buildConfigField "String", "BLUEMIX_IOT_DEVICEID", "\"bboxmiami\""
-            buildConfigField "String", "BLUEMIX_IOT_DEVICE_TYPE", "\"Android\""
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    */
-
-    buildTypes {
-        debug {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"2pp3ym\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-2pp3ym-ofy4kywr1d\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"zokJ7_rE)kz0Ku_NGK\""
-            buildConfigField "String", "BBOXAPI_APP_ID", "\"122-101\""
-            buildConfigField "String", "BBOXAPI_APP_SECRET", "\"7EFC9FA674F0450C8A929C243F49FDDE\""
-            buildConfigField "String", "BLUEMIX_IOT_DEVICEID", "\"bboxmiami\""
-            buildConfigField "String", "BLUEMIX_IOT_DEVICE_TYPE", "\"Android\""
-        }
-        release {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"2pp3ym\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-2pp3ym-ofy4kywr1d\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"zokJ7_rE)kz0Ku_NGK\""
+            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"8nq4io\""
+            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-8nq4io-6ia4koebdg\""
+            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"W)CFr*8@?PK9jqPt-m\""
             buildConfigField "String", "BBOXAPI_APP_ID", "\"122-101\""
             buildConfigField "String", "BBOXAPI_APP_SECRET", "\"7EFC9FA674F0450C8A929C243F49FDDE\""
             buildConfigField "String", "BLUEMIX_IOT_DEVICEID", "\"bboxmiami\""

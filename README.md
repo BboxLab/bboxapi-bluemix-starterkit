@@ -32,77 +32,56 @@ The following will describe how to create a working IoT Bluemix project step by 
 
 <b>1) Create a Bluemix account</b>
 
-<hr/>
-
-<b>2) Deploy this Git project in your Bluemix</b>
-
-[![Déployer dans Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=<https://github.com/edevregille/node-red-bluemix-starter>)
+![bluemix](img/bluemix_logo.png)
 
 <hr/>
 
-<b>3) Go to the Bluemix "catalog" and choose "Internet of Things Platform" : </b>
+<b>2) Deploy this Git project in your Bluemix and choose your region/organization/space</b>
+
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/edevregille/node-red-bluemix-starter.git)
+
+![reg_org_space](img/reg_org_space.png)
+<hr/>
+
+<b>3) Go to your Dashboard and select "iot-foundation" : </b>
 
 ![iot_foundation](img/iot_foundation.png)
 <hr/>
 
-<b>4) Name your "Internet of Things Platform" service and link it with your Node Red starter : </b>
+<b>4) Then, select "launch dashboard" : </b>
 
-![create_iot_foundation](img/create_iot_foundation.png)
+![launch_dash](img/launch_dash.png)
 <hr/>
 
-<b>5) Click on "Restage" to restage your app :</b>
+<b>5) Go to "devices" and click on "add a device" :</b>
 
-![restage](img/restage.png)
+![add_device](img/add_device.png)
 <hr/>
 
-<b>6) Go to your project overview :</b>
-
-![overview](img/overview.png)
-<hr/>
-
-<b>7) Click on your "Internet of Things Platform" service :</b>
-
-![click_iot_foundation](img/click_iot_foundation.png)
-<hr/>
-
-<b>8) Click on "Launch dashboard" : </b>
-
-![iot_dashboard](img/iot_dashboard.png)
-<hr/>
-
-<b>9) On your "Internet of Things Platform" dashboard, click on "add a device" : </b>
-
-![add_a_terminal](img/add_a_terminal.png)
-<hr/>
-
-<b>10) You cant create a device if you havent created device type yet, click on "create a device type" :</b>
+<b>6) You can't create a device if you havent created device type yet, click on "create a device type" :</b>
 
 ![create_terminal_type](img/create_terminal_type.png)
 <hr/>
 
-<b>11) Create a type with name "Android" :</b>
+<b>7) Create a device with type "Android" and define your "model" :</b>
 
-![define_android_type](img/define_android_type.png)
+![create_terminal_type_bis](img/create_terminal_type_bis.png)
 <hr/>
 
-<b>12) Then create a device with type "Android" : </b>
+<b>8) Now add a device with type "Android" : </b>
 
-![create_terminal](img/create_terminal.png)
+![add_android](img/add_android.png)
 <hr/>
 
-<b>13) Name your new device :</b>
+<b>9) Don't forget to save somewhere identification data for your device </b>
 
-![name_device](img/name_device.png)
+![device_data](img/device_data.png)
 <hr/>
 
-<b>14) Copy paste somewhere identification data for your device :</b>
-
-![end_add_device](img/end_add_device.png)
-<hr/>
 
 ## Configure authentication variables
 
-In your `./bbox-bluemix-bridge/build.gradle` you have a few variables to set :
+* In your `./bbox-bluemix-bridge/build.gradle` you have a few variables to set :
 
 | environnement variable | description |
 |--------------------|-------------------|
@@ -116,15 +95,28 @@ In your `./bbox-bluemix-bridge/build.gradle` you have a few variables to set :
 
 You can either set these variable as environnement variable or you can replace them with their values directly
 
-* `BBOXAPI_APP_ID` and `BBOXAPI_APP_SECRET` are given by Bouygues Télécom. If you dont have these, here is following contact https://dev.bouyguestelecom.fr/dev/?page_id=51
+* `BBOXAPI_APP_ID` and `BBOXAPI_APP_SECRET` are given by Bouygues Telecom. If you dont have these, here is following contact https://dev.bouyguestelecom.fr/dev/?page_id=51
 
-![end_add_device](img/gradle_info.png)
+![buildtype_bridge](img/buildtype_bridge.png)
+
+* Do the same modifications in `./bbox-bluemix-mobile/build.gradle`
+
+![buildtype_mobile](img/buildtype_mobile.png)
 
 ## Build Android app
 
-Build project with Android Studio or your favorite IDE
+Build project (bridge and mobile) with Android Studio or your favorite IDE
 
-## Install Service
+## Install mobile Android application
+
+Connect via adb or USB and install apk :  
+
+```
+adb connect <IP>
+adb install -r ./bbox-bluemix-mobile/build/outputs/apk/bbox-bluemix-mobile-debug.apk
+```
+
+## Install Service on Bbox Miami
 
 Note down your Bbox Miami <IP> address.
 Connect via adb and install apk :  
@@ -169,5 +161,5 @@ Android application is a service defined in `fr.bouyguestelecom.tv.bridge.bluemi
 
 ## License
 
-The MIT License (MIT) Copyright (c) 2015 InnovationLab BboxLab
+The MIT License (MIT) Copyright (c) 2016 InnovationLab BboxLab
 

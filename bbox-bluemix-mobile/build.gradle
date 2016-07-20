@@ -12,52 +12,16 @@ android {
         versionName "1.0"
     }
 
-    /*
     buildTypes {
         debug {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"njihb0\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-njihb0-wt9cycxv5u\""
-            //buildConfigField "String", "BLUEMIX_API_TOKEN", "\"IauIPABiK&5uM-moL*\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"GtRBGyOqnWp7XfomQ?\""
+            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"8nq4io\""
+            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-8nq4io-6ia4koebdg\""
+            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"W)CFr*8@?PK9jqPt-m\""
         }
         release {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"njihb0\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-njihb0-wt9cycxv5u\""
-            //buildConfigField "String", "BLUEMIX_API_TOKEN", "\"IauIPABiK&5uM-moL*\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"GtRBGyOqnWp7XfomQ?\""
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    */
-
-    /*
-    buildTypes {
-        debug {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"4ujptp\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-4ujptp-zslsofd7yp\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"g-9pg2DCX-(BSqtU)d\""
-        }
-        release {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"4ujptp\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-4ujptp-zslsofd7yp\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"g-9pg2DCX-(BSqtU)d\""
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    */
-
-    buildTypes {
-        debug {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"2pp3ym\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-2pp3ym-ofy4kywr1d\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"zokJ7_rE)kz0Ku_NGK\""
-        }
-        release {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"2pp3ym\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-2pp3ym-ofy4kywr1d\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"zokJ7_rE)kz0Ku_NGK\""
+            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"8nq4io\""
+            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-8nq4io-6ia4koebdg\""
+            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"W)CFr*8@?PK9jqPt-m\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
