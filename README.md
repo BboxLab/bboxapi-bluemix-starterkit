@@ -158,6 +158,8 @@ Android application is a service defined in `fr.bouyguestelecom.tv.bridge.bluemi
 * <a href="https://github.com/ibm-messaging/iot-starter-for-android">IBM IoT Starter for Android</a>
 * <a href="https://github.com/BboxLab/bbox-2ndscreen-android">bbox-2ndscreen library</a>
 * <a href="http://www.eclipse.org/paho/">Eclipse Paho MQTT open source client</a>
+* <a href="https://github.com/edevregille/node-red-bluemix-starter.git">Node Red Bluemix Starter by edevregille</a>
+
 
 ## License
 
