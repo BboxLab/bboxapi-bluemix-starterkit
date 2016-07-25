@@ -38,7 +38,7 @@ The following will describe how to create a working IoT Bluemix project step by 
 
 <b>2) Deploy this Git project in your Bluemix and choose your region/organization/space</b>
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/edevregille/node-red-bluemix-starter.git)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/edevregille/node-red-iot-starter)
 
 ![reg_org_space](img/reg_org_space.png)
 <hr/>
