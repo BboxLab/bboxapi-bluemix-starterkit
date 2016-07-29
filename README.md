@@ -5,7 +5,7 @@
 
 Android Service running a MQTT notification client between BboxApi and Bluemix platform
 
-![architecture](img/architecture.png)
+![architecture](img/architecture.jpg)
 
 Following BboxApi notifications are published through MQTT client directly to Bluemix IoT platform : 
 
@@ -15,14 +15,7 @@ Following BboxApi notifications are published through MQTT client directly to Bl
 | APPLICATION         |  "Application" |
 | MEDIA     |     "Media"       |
 | MESSAGE |     "Message"         |
-| USER_INPUT   |   "UserInterface/RemoteController"      |
 | IOT        |    "Iot"    |
-
-## Download source
-
-```
-git clone bboxapi-bluemix-starterkit
-```
 
 ## Setup Bluemix
 
@@ -63,12 +56,16 @@ The following will describe how to create a working IoT Bluemix project step by 
 ![create_terminal_type](img/create_terminal_type.png)
 <hr/>
 
-<b>7) Create a device with type "Android" and define your "model" :</b>
+<b>7) Create a device with type "Android" (next) and define your device with a "model" (next) :</b>
 
 ![create_terminal_type_bis](img/create_terminal_type_bis.png)
 <hr/>
 
-<b>8) Now add a device with type "Android" : </b>
+![create_terminal_type_bisbis](img/type.png)
+<hr/>
+
+
+<b>8) Now add a device with type "Android" (next many times) : </b>
 
 ![add_android](img/add_android.png)
 <hr/>
@@ -102,6 +99,12 @@ You can either set these variable as environnement variable or you can replace t
 * Do the same modifications in `./bbox-bluemix-mobile/build.gradle`
 
 ![buildtype_mobile](img/buildtype_mobile.png)
+
+## Download source
+
+```
+git clone bboxapi-bluemix-starterkit
+```
 
 ## Build Android app
 
