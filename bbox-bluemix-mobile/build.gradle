@@ -14,14 +14,14 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"8nq4io\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-8nq4io-6ia4koebdg\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"W)CFr*8@?PK9jqPt-m\""
+            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"your org\""
+            buildConfigField "String", "BLUEMIX_API_KEY", "\"your api key\""
+            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"your api token\""
         }
         release {
-            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"8nq4io\""
-            buildConfigField "String", "BLUEMIX_API_KEY", "\"a-8nq4io-6ia4koebdg\""
-            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"W)CFr*8@?PK9jqPt-m\""
+            buildConfigField "String", "BLUEMIX_IOT_ORG", "\"your org\""
+            buildConfigField "String", "BLUEMIX_API_KEY", "\"your api key\""
+            buildConfigField "String", "BLUEMIX_API_TOKEN", "\"your api token\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

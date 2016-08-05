@@ -75,20 +75,27 @@ The following will describe how to create a working IoT Bluemix project step by 
 ![device_data](img/device_data.png)
 <hr/>
 
+## Download source
 
-## Configure authentication variables
+```
+git clone https://github.com/BboxLab/bboxapi-bluemix-starterkit.git
+```
+
+## Setup in Android Studio
+
+You can of course use another IDE
 
 * In your `./bbox-bluemix-bridge/build.gradle` you have a few variables to set :
 
-| environnement variable | description |
+| environment variable | description |
 |--------------------|-------------------|
 | BBOXAPI_APP_ID         | application ID relative to your Miami Box  |
 | BBOXAPI_APP_SECRET     | application Secret relative to your Miami Box             |
 | BLUEMIX_IOT_DEVICE_TYPE | Bluemix Internet of Things auth token (see last step in Setup)              |
 | BLUEMIX_IOT_DEVICEID   | Bluemix Internet of Things deviceId you have set              |
 | BLUEMIX_IOT_ORG        | Bluemix Internet of Things organization id (at the top in dashboard page)        |
-| BBOXAPI_API_KEY        | In dashboard -> global variables  |
-| BBOXAPI_API_TOKEN      | In dashboard -> global variables             |
+| BBOXAPI_API_KEY        | In project dashboard -> global variables  |
+| BBOXAPI_API_TOKEN      | In project dashboard -> global variables             |
 
 You can either set these variable as environnement variable or you can replace them with their values directly
 
@@ -99,12 +106,6 @@ You can either set these variable as environnement variable or you can replace t
 * Do the same modifications in `./bbox-bluemix-mobile/build.gradle`
 
 ![buildtype_mobile](img/buildtype_mobile.png)
-
-## Download source
-
-```
-git clone bboxapi-bluemix-starterkit
-```
 
 ## Build Android app
 
